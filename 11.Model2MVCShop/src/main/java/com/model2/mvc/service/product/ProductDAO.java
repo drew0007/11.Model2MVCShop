@@ -25,7 +25,4 @@ public interface ProductDAO {
 	
 	//상품 comment 조회
 	public Map<String, Object> getProductComment(int prodNo) throws Exception;
-	
-
-	public Map<String,Object> getProductListMain(Search search) throws Exception;
 }

@@ -183,42 +183,4 @@ public class ProductController {
 		
 		return "forward:/history.jsp";
 	}
-	
-	@RequestMapping( value = "listProductIndex")
-	public String getProductListIndex(@ModelAttribute("search") Search search, Model model) throws Exception{
-		
-		if(search.getCurrentPage() ==0 ){
-			search.setCurrentPage(1);
-		}
-		search.setPageSize(pageSize);
-		
-		Map<String, Object> map = productService.getProductListMain(search);
-		
-		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
-		
-		model.addAttribute("list", map.get("list"));
-		model.addAttribute("resultPage", resultPage);
-		model.addAttribute("search", search);
-		
-		return "forward:/index.jsp";
-	}
-	
-	@RequestMapping( value = "listProductMain")
-	public String getProductListMain(@ModelAttribute("search") Search search, Model model) throws Exception{
-		
-		if(search.getCurrentPage() ==0 ){
-			search.setCurrentPage(1);
-		}
-		search.setPageSize(pageSize);
-		
-		Map<String, Object> map = productService.getProductListMain(search);
-		
-		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
-		
-		model.addAttribute("list", map.get("list"));
-		model.addAttribute("resultPage", resultPage);
-		model.addAttribute("search", search);
-		
-		return "forward:/main.jsp";
-	}
 }

@@ -31,8 +31,7 @@
 	             <ul class="nav navbar-nav">
 	             
 	              <!--  회원관리 DrowDown -->
-	              <c:if test="${!empty sessionScope.user}">
-	              	<li class="dropdown">
+	              <li class="dropdown">
 	                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 	                         <span >회원관리</span>
 	                         <span class="caret"></span>
@@ -48,7 +47,6 @@
 	                         <li><a href="#">etc...</a></li>
 	                     </ul>
 	                 </li>
-	               </c:if>
 	                 
 	              <!-- 판매상품관리 DrowDown  -->
 	               <c:if test="${sessionScope.user.role == 'admin'}">
@@ -68,8 +66,7 @@
 	                 </c:if>
 	                 
 	              <!-- 구매관리 DrowDown -->
-	              <c:if test="${!empty sessionScope.user}">
-	              	<li class="dropdown">
+	              <li class="dropdown">
 	                     <a  href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 	                         <span >상품구매</span>
 	                         <span class="caret"></span>
@@ -90,20 +87,10 @@
 	                 </li>
 	                 
 	                 <li><a href="#">etc...</a></li>
-	               </c:if>
-	               <c:if test="${empty sessionScope.user}">
-	                 <li><a href="/product/listProduct?menu=search">상품검색</a></li>
-	               </c:if>
 	             </ul>
 	             
 	             <ul class="nav navbar-nav navbar-right">
-	                <c:if test="${empty sessionScope.user}">
-	                	<li><a href="#">회원가입</a></li>
-	                	<li><a href="#">로 그 인</a></li>
-	                </c:if>
-	                <c:if test="${!empty sessionScope.user}">
-	                	<li><a href="#">로그아웃</a></li>
-	                </c:if>
+	                <li><a href="#">로그아웃</a></li>
 	            </ul>
 		</div>
 		<!-- dropdown hover END -->	       
@@ -119,25 +106,9 @@
 		//============= logout Event  처리 =============	
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-		 	$("a:contains('로 그 인')").on("click" , function() {
-				$(self.location).attr("href","/user/login");
-			}); 
-		 });
-	
-		//============= logout Event  처리 =============	
-		 $(function() {
-			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
 		 	$("a:contains('로그아웃')").on("click" , function() {
 				$(self.location).attr("href","/user/logout");
 				//self.location = "/user/logout"
-			}); 
-		 });
-			
-		//============= 회원가입 Event  처리 =============	
-		 $(function() {
-			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-		 	$("a:contains('회원가입')").on("click" , function() {
-				$(self.location).attr("href","/user/addUser");
 			}); 
 		 });
 		

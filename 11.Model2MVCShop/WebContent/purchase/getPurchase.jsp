@@ -168,7 +168,7 @@
 	  <div class="form-group">
 	    <label for="divyPostcode" class="col-sm-offset-1 col-sm-3 control-label">구매자주소</label>
 	    <div class="col-sm-4">
-			<div class="form-control" style="height:auto;">(${list[0].divyPostcode}) ${list[0].divyAddress} ${list[0].divyAddress2}</div>
+			<div class="form-control">(${list[0].divyPostcode}) ${list[0].divyAddress} ${list[0].divyAddress2}</div>
 	    </div>
 	  </div>
       
