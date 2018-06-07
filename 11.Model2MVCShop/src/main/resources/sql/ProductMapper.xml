@@ -141,4 +141,8 @@
 		<include refid="select-product-list"/>
 		<include refid="select-count-end"/>
 	</select>
+	
+	<select id="getProductListMain" parameterType="search" resultMap="productSelectMap">
+		<include refid="select-product-list"/>
+	</select>
 </mapper>

@@ -81,5 +81,20 @@ public class ProductDaoImpl implements ProductDAO{
 		
 		return map;
 	}
+
+	@Override
+	public Map<String,Object> getProductListMain(Search search) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int totalCount = sqlSession.selectOne("ProductMapper.getProductListCount", search);
+		System.out.println("totalCount"+totalCount);
+		List<User> list = sqlSession.selectList("ProductMapper.getProductListMain", search);
+		
+		map.put("totalCount", totalCount);
+		map.put("list", list);
+		
+		return map;
+	}
 	
 }

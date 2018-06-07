@@ -39,6 +39,10 @@
 				alert("메일 인증이 완료되었습니다.");
 				self.location = "/index.jsp"
 			}
+			if("${empty list}" == "true"){
+				self.location = "/product/listProductIndex"
+			}
+			
 		});
 		
 		//============= 회원원가입 화면이동 =============
@@ -82,6 +86,9 @@
 			<!-- toolBar Button End //////////////////////// -->
 			
 			<div class="collapse navbar-collapse"  id="target">
+	             <ul class="nav navbar-nav navbar-left">
+	                 <li><a href="/product/listProduct?menu=search">상품검색</a></li>
+	           	</ul>
 	             <ul class="nav navbar-nav navbar-right">
 	                 <li><a href="#">회원가입</a></li>
 	                 <li><a href="#">로 그 인</a></li>
@@ -93,86 +100,71 @@
    	<!-- ToolBar End /////////////////////////////////////-->
    	
 	<!--  화면구성 div Start /////////////////////////////////////-->
-	<div class="container">
-		
-		<!-- 다단레이아웃  Start /////////////////////////////////////-->
-		<div class="row">
 	
-			<!--  Menu 구성 Start /////////////////////////////////////-->     	
-			<div class="col-md-3">
-		        
-		       	<!--  회원관리 목록에 제목 -->
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-						<i class="glyphicon glyphicon-heart"></i> 회원관리
-         			</div>
-         			<!--  회원관리 아이템 -->
-					<ul class="list-group">
-						 <li class="list-group-item">
-						 	<a href="#">개인정보조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
-						 </li>
-						 <li class="list-group-item">
-						 	<a href="#">회원정보조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
-						 </li>
-					</ul>
-		        </div>
-               
-               
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-							<i class="glyphicon glyphicon-briefcase"></i> 판매상품관리
-         			</div>
-					<ul class="list-group">
-						 <li class="list-group-item">
-						 	<a href="#">판매상품등록</a> <i class="glyphicon glyphicon-ban-circle"></i>
-						 </li>
-						 <li class="list-group-item">
-						 	<a href="#">판매상품관리</a> <i class="glyphicon glyphicon-ban-circle"></i>
-						 </li>
-					</ul>
-		        </div>
-               
-               
-				<div class="panel panel-primary">
-					<div class="panel-heading">
-							<i class="glyphicon glyphicon-shopping-cart"></i> 상품구매
-	    			</div>
-					<ul class="list-group">
-						 <li class="list-group-item"><a href="#">상품검색</a></li>
-						  <li class="list-group-item">
-						  	<a href="#">구매이력조회</a> <i class="glyphicon glyphicon-ban-circle"></i>
-						  </li>
-						 <li class="list-group-item">
-						 	<a href="#">최근본상품</a> <i class="glyphicon glyphicon-ban-circle"></i>
-						 </li>
-					</ul>
-				</div>
-				
-			</div>
-			<!--  Menu 구성 end /////////////////////////////////////-->   
-
-	 	 	<!--  Main start /////////////////////////////////////-->   		
-	 	 	<div class="col-md-9">
-				<div class="jumbotron">
-			  		<h1>Model2 MVC Shop</h1>
-			  		<p>로그인 후 사용가능...</p>
-			  		<p>로그인 전 검색만 가능합니다.</p>
-			  		<p>회원가입 하세요.</p>
-			  		
-			  		<div class="text-center">
-			  			<a class="btn btn-info btn-lg" href="#" role="button">회원가입</a>
-			  			<a class="btn btn-info btn-lg" href="#" role="button">로 그 인</a>
-			  		</div>
-			  	
-			  	</div>
+	<div class="container">	      
+	      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+	        <ol class="carousel-indicators">
+	          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+	          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+	          <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	        </ol>
+	        
+	        <div class="carousel-inner" role="listbox">
+	          
+	          <div class="item active">
+	            <img src="/images/uploadFiles/displayitem1.jpg" alt="First slide">
+	          </div>
+	          
+	          <div class="item">
+	            <img src="/images/uploadFiles/displayitem2.jpg" alt="Second slide">
+	          </div>
+	          
+	          <div class="item">
+	            <img src="/images/uploadFiles/displayitem3.jpg" alt="Third slide">
+	          </div>
 	        </div>
-	   	 	<!--  Main end /////////////////////////////////////-->   		
-	 	 	
-		</div>
-		<!-- 다단레이아웃  end /////////////////////////////////////-->
-		
+	        
+	        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+	          <!-- <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> -->
+	          <!-- <span class="sr-only">Previous</span> -->
+	        </a>
+	        
+	        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+	          <!-- <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> -->
+	          <!-- <span class="sr-only">Next</span> -->
+	        </a>
+	     </div>
 	</div>
-	<!--  화면구성 div end /////////////////////////////////////-->
+	
+	<br><br>
+	
+	
+	<c:if test="${!empty list}">
+	<div class="container">	      
+	<div class="row">
+		<c:forEach var="product" items="${list}">
+        <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" style="height: 300px;">
+          <div class="card h-100">
+            <a href="/product/getProduct?prodNo=${product.prodNo }">
+				<c:if test="${!empty product.fileNameList[0]}">
+					<img src = "/images/uploadFiles/${product.fileNameList[0]}" width="200"/>
+				</c:if>
+				<c:if test="${empty product.fileNameList[0]}">
+					<img src = "/images/uploadFiles/1298310238.png" width="150"/>
+				</c:if>
+            </a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="/product/getProduct?prodNo=${product.prodNo }">${product.prodName}</a>
+              </h4>
+              <p class="card-text">${product.price} 원</p>
+            </div>
+          </div>
+        </div>
+        </c:forEach>
+      </div>
+      </div>
+      </c:if>
 
 </body>
 

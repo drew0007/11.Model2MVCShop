@@ -56,4 +56,10 @@ public class ProductServiceImpl implements ProductService {
 	public Map<String, Object> getProductComment(int prodNo) throws Exception{
 		return productDAO.getProductComment(prodNo);
 	}
+
+	@Override
+	public Map<String, Object> getProductListMain(Search search) throws Exception {
+
+		return productDAO.getProductListMain(search);
+	}
 }
